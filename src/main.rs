@@ -16,7 +16,7 @@ async fn main() -> shuttle_axum::ShuttleAxum {
     let router = Router::new()
         .route("/", get(hello_world))
         .route("/-1/error", get(server_error))
-        .route("/1/:num1/:num2", get(day_01::task1));
+        .route("/1/*nums", get(day_01::day01));
 
     Ok(router.into())
 }

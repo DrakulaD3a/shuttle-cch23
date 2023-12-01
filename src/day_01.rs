@@ -1,8 +1,9 @@
-use axum::{extract::Path, response::IntoResponse, http::StatusCode};
+use axum::{extract::Path, http::StatusCode, response::IntoResponse};
 
-pub async fn task1(
-    Path((num1, num2)): Path<(i32, i32)>,
-) -> impl IntoResponse {
-    let response = (num1 ^ num2).pow(3);
-    (StatusCode::OK, format!("{response}"))
+pub async fn day01(Path(nums): Path<String>) -> impl IntoResponse {
+    let mut sum = 0;
+    nums.split('/').for_each(|num| {
+        sum = sum ^ num.parse::<i32>().unwrap();
+    });
+    (StatusCode::OK, format!("{}", sum.pow(3)))
 }
