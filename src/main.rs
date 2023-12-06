@@ -4,6 +4,7 @@ use axum::{http::StatusCode, routing::get};
 
 mod day_01;
 mod day_04;
+mod day_06;
 
 async fn hello_world() -> &'static str {
     "Hello, world!"
@@ -20,7 +21,8 @@ async fn main() -> shuttle_axum::ShuttleAxum {
         .route("/-1/error", get(server_error))
         .route("/1/*nums", get(day_01::day01))
         .route("/4/strength", post(day_04::task1))
-        .route("/4/contest", post(day_04::task2));
+        .route("/4/contest", post(day_04::task2))
+        .route("/6", post(day_06::day_06));
 
     Ok(router.into())
 }
